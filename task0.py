@@ -40,7 +40,7 @@ class QlearningConfig:
         self.algo_name = algo_name # 算法名称
         self.env_name = env_name # 环境名称
         self.device = device # 检测GPU
-        self.train_eps = 3000 # 训练的回合数
+        self.train_eps = 300 # 训练的回合数
         self.test_eps = 3 # 测试的回合数
         self.gamma = 1 # reward的衰减率
         self.epsilon_start = 0.95 # e-greedy策略中初始epsilon
@@ -69,7 +69,7 @@ def env_agent_config(cfg,seed=1):
         agent : 智能体
     ''' 
     env = NumberTower(max_len=5)
-    env.seed(seed) # 设置随机种子
+    env.np_random = seed # 设置随机种子
     state_dim = env.observation_space.n # 状态维度
     action_dim = env.action_space.n # 动作维度
     agent = QLearning(state_dim,action_dim,cfg)
